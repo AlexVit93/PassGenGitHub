@@ -54,3 +54,8 @@ input[type="text"] {
 #animal-image {
   width: 250px;
 }
+
+.special {
+  display: flex;
+  gap: 15px;
+}

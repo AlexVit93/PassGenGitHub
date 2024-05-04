@@ -1,10 +1,22 @@
 function updateSettings() {
-  const length = document.getElementById("length").value;
+  const length = document.getElementById("length");
+  const digits = document.getElementById("digits");
+  const capitals = document.getElementById("capitals");
+  const symbols = document.getElementById("symbols");
+
+  document.getElementById("length-value").textContent = length.value;
+  document.getElementById("digits-value").textContent = digits.value;
+  document.getElementById("capitals-value").textContent = capitals.value;
+  document.getElementById("symbols-value").textContent = symbols.value;
+
+  updateImage(length.value);
+}
+function updateImage(length) {
   const image = document.getElementById("animal-image");
   if (length <= 14) {
-    image.src = "../goat.png";
+    image.src = "./goat.png";
   } else {
-    image.src = "../bear.png";
+    image.src = "./bear.png";
   }
 }
 
@@ -81,6 +93,10 @@ function copyToClipboard() {
     .catch((err) => {
       console.error("Failed to copy text: ", err);
     });
+}
+
+function clearPassword() {
+  document.getElementById("result").value = "";
 }
 
 window.onload = function () {

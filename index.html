@@ -9,7 +9,7 @@
   <body>
     <div class="password-generator">
       <div class="settings">
-        <label for="length">Length:</label>
+        <label for="length">Length:<span id="length-value">12</span></label>
         <input
           type="range"
           id="length"
@@ -19,7 +19,7 @@
           oninput="updateSettings()"
         />
 
-        <label for="digits">Digits:</label>
+        <label for="digits">Digits:<span id="digits-value">2</span></label>
         <input
           type="range"
           id="digits"
@@ -29,7 +29,9 @@
           oninput="updateSettings()"
         />
 
-        <label for="capitals">Capitals:</label>
+        <label for="capitals"
+          >Capitals:<span id="capitals-value">2</span></label
+        >
         <input
           type="range"
           id="capitals"
@@ -39,7 +41,7 @@
           oninput="updateSettings()"
         />
 
-        <label for="symbols">Symbols:</label>
+        <label for="symbols">Symbols:<span id="symbols-value">2</span></label>
         <input
           type="range"
           id="symbols"
@@ -54,7 +56,10 @@
       </div>
       <button onclick="generatePassword()">Generate Password</button>
       <input type="text" id="result" readonly />
-      <button onclick="copyToClipboard()">Copy</button>
+      <div class="special">
+        <button onclick="copyToClipboard()">Copy</button>
+        <button onclick="clearPassword()">Clear</button>
+      </div>
     </div>
     <script src="./js/script.js"></script>
   </body>
