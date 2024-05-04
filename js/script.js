@@ -2,9 +2,9 @@ function updateSettings() {
   const length = document.getElementById("length").value;
   const image = document.getElementById("animal-image");
   if (length <= 14) {
-    image.src = "/img/goat.png";
+    image.src = "../img/goat.png";
   } else {
-    image.src = "/img/bear.png";
+    image.src = "../img/bear.png";
   }
 }
 
