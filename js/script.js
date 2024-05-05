@@ -61,7 +61,7 @@ function updateImage(length, digits, capitals, symbols) {
       break;
   }
 }
-
+let isPasswordGenerated = false;
 function generatePassword() {
   const length = document.getElementById("length").value;
   const digits = document.getElementById("digits").value;
@@ -70,6 +70,8 @@ function generatePassword() {
 
   const password = generateRandomPassword(length, digits, capitals, symbols);
   document.getElementById("result").value = password;
+  isPasswordGenerated = true;
+  updateSettings();
 }
 
 function updateStrengthIndicator(length, digits, capitals, symbols) {
@@ -145,17 +147,34 @@ function generateRandomPassword(length, digits, capitals, symbols) {
 
   return password;
 }
-
 function copyToClipboard() {
-  const text = document.getElementById("result").value;
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      console.log("Text copied successfully");
-    })
-    .catch((err) => {
-      console.error("Failed to copy text: ", err);
-    });
+  const text = document.getElementById("result").value.trim();
+  const tooltip = document.getElementById("copy-tooltip");
+  if (!isPasswordGenerated || !text) {
+    tooltip.textContent = "Generate a password!";
+    tooltip.style.visibility = "visible";
+    tooltip.style.opacity = "1";
+    setTimeout(() => {
+      tooltip.style.visibility = "hidden";
+      tooltip.style.opacity = "0";
+    }, 2000);
+  } else {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        tooltip.textContent = "Copied!";
+        tooltip.style.visibility = "visible";
+        tooltip.style.opacity = "1";
+        setTimeout(() => {
+          tooltip.style.visibility = "hidden";
+          tooltip.style.opacity = "0";
+        }, 2000);
+        console.log("Text copied successfully");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  }
 }
 
 function clearPassword() {
@@ -174,6 +193,7 @@ function clearPassword() {
   const strengthIndicator = document.getElementById("strength-indicator");
   strengthIndicator.style.width = "0%";
   strengthIndicator.style.backgroundColor = "red";
+  isPasswordGenerated = false;
   updateSettings();
 }
 
