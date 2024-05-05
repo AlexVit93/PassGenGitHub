@@ -39,22 +39,22 @@ function updateImage(length, digits, capitals, symbols) {
 
   switch (category) {
     case 0:
-      image.src = "../img/goat.png";
+      image.src = "./img/goat.png";
       break;
     case 1:
-      image.src = "../img/goatburn.png";
+      image.src = "./img/goatburn.png";
       break;
     case 2:
-      image.src = "../img/goatboom.png";
+      image.src = "./img/goatboom.png";
       break;
     case 3:
-      image.src = "../img/bear.png";
+      image.src = "./img/bear.png";
       break;
     case 4:
-      image.src = "../img/bear_idle.png";
+      image.src = "./img/bear_idle.png";
       break;
     case 5:
-      image.src = "../img/dragon.png";
+      image.src = "./img/dragon.png";
       break;
     default:
       console.log("Unhandled category");
