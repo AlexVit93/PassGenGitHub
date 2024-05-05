@@ -13,9 +13,9 @@
         <input
           type="range"
           id="length"
-          min="6"
+          min="1"
           max="20"
-          value="12"
+          value="3"
           oninput="updateSettings()"
         />
 
@@ -23,7 +23,7 @@
         <input
           type="range"
           id="digits"
-          min="0"
+          min="1"
           max="10"
           value="2"
           oninput="updateSettings()"
@@ -35,7 +35,7 @@
         <input
           type="range"
           id="capitals"
-          min="0"
+          min="1"
           max="10"
           value="2"
           oninput="updateSettings()"
@@ -45,7 +45,7 @@
         <input
           type="range"
           id="symbols"
-          min="0"
+          min="1"
           max="10"
           value="2"
           oninput="updateSettings()"
@@ -56,6 +56,11 @@
       </div>
       <button onclick="generatePassword()">Generate Password</button>
       <input type="text" id="result" readonly />
+      <div
+        id="strength-indicator"
+        class="strength-indicator"
+        style="width: 0%"
+      ></div>
       <div class="special">
         <button onclick="copyToClipboard()">Copy</button>
         <button onclick="clearPassword()">Clear</button>

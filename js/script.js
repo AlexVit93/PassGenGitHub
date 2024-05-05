@@ -10,6 +10,12 @@ function updateSettings() {
   document.getElementById("symbols-value").textContent = symbols.value;
 
   updateImage(length.value, digits.value, capitals.value, symbols.value);
+  updateStrengthIndicator(
+    length.value,
+    digits.value,
+    capitals.value,
+    symbols.value
+  );
 }
 function updateImage(length, digits, capitals, symbols) {
   const total =
@@ -64,6 +70,27 @@ function generatePassword() {
 
   const password = generateRandomPassword(length, digits, capitals, symbols);
   document.getElementById("result").value = password;
+}
+
+function updateStrengthIndicator(length, digits, capitals, symbols) {
+  const totalStrength =
+    parseInt(length) +
+    parseInt(digits) +
+    parseInt(capitals) +
+    parseInt(symbols);
+  const maxPossibleStrength = 50;
+  const strengthIndicator = document.getElementById("strength-indicator");
+  const strengthPercentage = (totalStrength / maxPossibleStrength) * 100;
+
+  strengthIndicator.style.width = `${strengthPercentage}%`;
+
+  if (totalStrength < 16) {
+    strengthIndicator.style.backgroundColor = "red";
+  } else if (totalStrength < 25) {
+    strengthIndicator.style.backgroundColor = "orange";
+  } else {
+    strengthIndicator.style.backgroundColor = "green";
+  }
 }
 
 function generateRandomPassword(length, digits, capitals, symbols) {
@@ -132,7 +159,22 @@ function copyToClipboard() {
 }
 
 function clearPassword() {
+  document.getElementById("length").value = 3;
+  document.getElementById("digits").value = 2;
+  document.getElementById("capitals").value = 2;
+  document.getElementById("symbols").value = 2;
+
+  document.getElementById("length-value").textContent = "3";
+  document.getElementById("digits-value").textContent = "2";
+  document.getElementById("capitals-value").textContent = "2";
+  document.getElementById("symbols-value").textContent = "2";
+
   document.getElementById("result").value = "";
+
+  const strengthIndicator = document.getElementById("strength-indicator");
+  strengthIndicator.style.width = "0%";
+  strengthIndicator.style.backgroundColor = "red";
+  updateSettings();
 }
 
 window.onload = function () {
