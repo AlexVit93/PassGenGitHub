@@ -9,14 +9,50 @@ function updateSettings() {
   document.getElementById("capitals-value").textContent = capitals.value;
   document.getElementById("symbols-value").textContent = symbols.value;
 
-  updateImage(length.value);
+  updateImage(length.value, digits.value, capitals.value, symbols.value);
 }
-function updateImage(length) {
+function updateImage(length, digits, capitals, symbols) {
+  const total =
+    parseInt(length) +
+    parseInt(digits) +
+    parseInt(capitals) +
+    parseInt(symbols);
   const image = document.getElementById("animal-image");
-  if (length <= 14) {
-    image.src = "./goat.png";
-  } else {
-    image.src = "./bear.png";
+  const category =
+    total <= 14
+      ? 0
+      : total <= 25
+      ? 1
+      : total <= 35
+      ? 2
+      : total <= 40
+      ? 3
+      : total <= 49
+      ? 4
+      : 5;
+
+  switch (category) {
+    case 0:
+      image.src = "../img/goat.png";
+      break;
+    case 1:
+      image.src = "../img/goatburn.png";
+      break;
+    case 2:
+      image.src = "../img/goatboom.png";
+      break;
+    case 3:
+      image.src = "../img/bear.png";
+      break;
+    case 4:
+      image.src = "../img/bear_idle.png";
+      break;
+    case 5:
+      image.src = "../img/dragon.png";
+      break;
+    default:
+      console.log("Unhandled category");
+      break;
   }
 }
 
